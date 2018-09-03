@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 import re
 import os
 import linecache
+from lxml import etree
 
 # 写一个文件试试,
 # file = open(r'/Users/Mac/Documents/openflie.txt',"w")
@@ -123,11 +124,6 @@ b = linecount_1(filename)
 print(b)
 
 
-
-
-
-
-
 # print(linecount)
 # m_linelist = Mfile.readline()
 # for line in m_linelist:
@@ -137,6 +133,12 @@ print(b)
 # r2 = linecache.getline('/Users/Mac/Documents/openflie.txt',3)
 # print(r2)
 
-
 # file = open(r'/Users/Mac/Documents/openflie.rtf').read()
 # print(file)
+
+root = etree.XML("<root><a x='123'>aText<b x='12'/><c/><b/></a></root>")
+x=root.find('.//a[@x]')
+x3=root.xpath('//a[@x]')
+for xx in x3:
+    print ("xpath=%s" % xx.text)
+print(x.text,x3[0][0])
